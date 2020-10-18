@@ -413,12 +413,11 @@ for epoch in range(config.epochs):
         optimizer.step()
 
         running_loss += loss.item()
-        if i % 20 == 19:
-            wandb.log({"Loss": running_loss / 20})
-            running_loss = 0.0
-            correct = 0
-            total = 0
-            temp = 0
+
+    wandb.log({"Loss": running_loss / 20})
+    correct = 0
+    total = 0
+    temp = 0
 
     print("Epoch :", epoch)
     with torch.no_grad():
