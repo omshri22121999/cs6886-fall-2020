@@ -301,6 +301,7 @@ class FuseNet(nn.Module):
         x = self.batchn2(x)
         x = self.adap(x)
         x = self.conv3(x)
+        x = self.hswish(x)
         x = x.flatten(start_dim=1)
         x = self.drop(x)
         x = self.lin(x)
@@ -414,7 +415,7 @@ for epoch in range(config.epochs):
 
         running_loss += loss.item()
 
-    wandb.log({"Loss": running_loss / config.batch_size})
+    wandb.log({"Loss": running_loss})
     correct = 0
     total = 0
     temp = 0
