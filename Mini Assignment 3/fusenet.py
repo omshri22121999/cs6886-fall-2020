@@ -106,7 +106,6 @@ class Fuse(nn.Module):
 
         if self.is_se:
             self.se = SEModule(2 * exp_channel)
-            self.hsig = Hsigmoid()
 
         self.conv3 = nn.Conv2d(
             in_channels=2 * exp_channel,
@@ -133,7 +132,7 @@ class Fuse(nn.Module):
 
         if self.is_se:
             x = self.se(x)
-            x = self.hsig(x)
+
         x = self.nl(x)
 
         x = self.conv3(x)
@@ -397,7 +396,7 @@ optimizer = optim.Adam(
 # Linking Fusenet to wandb
 wandb.watch(fusenet)
 
-for epoch in range(config.epochs):
+for epoch in range(config.epochs + 1):
 
     running_loss = 0.0
 
