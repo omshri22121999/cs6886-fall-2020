@@ -414,7 +414,7 @@ for epoch in range(config.epochs):
 
         running_loss += loss.item()
 
-    wandb.log({"Loss": running_loss / 20})
+    wandb.log({"Loss": running_loss / config.batch_size})
     correct = 0
     total = 0
     temp = 0
